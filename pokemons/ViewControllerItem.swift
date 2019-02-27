@@ -10,15 +10,17 @@ import UIKit
 
 class ViewControllerItem: UIViewController {
     
-//    @IBOutlet weak var imageView: UIImageView!
-//    @IBOutlet weak var labelItem: UILabel!
-//    @IBOutlet weak var labelDescription: UILabel!
-//    var pokemon: Pokemon!
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        imageView.image = pokemon.png
-//        labelItem.text = foo.titulo
-//        labelDescription.text = "Esto es una descripcion muy larga que trata sobre una explicacion detallada sobre el objeto que se muestra en la parte superior de la pantalla dentro de un imageview que se refiere a un item seleccionado previamente en una pantalla anterior."
-//    }
+    var pokemon: Pokemon!
+    var imagen: UIImage = UIImage()
+    
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var descrLbl: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nameLbl.text = pokemon.name
+        image.image = imagen
+        descrLbl.text = pokemon.description
+    }
 }
