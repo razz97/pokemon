@@ -22,6 +22,7 @@ class Pokemon {
     let gif: String
     let png: String
     let description: String
+    var image: UIImage?
     
     init(number: Int, name: String, type: String, hp: Int, attack: Int, defense: Int, speed: Int, special: Int, gif: String, png: String, description: String) {
         self.number = number
@@ -35,7 +36,6 @@ class Pokemon {
         self.gif = gif
         self.png = png
         self.description = description
-
     }
     
     
