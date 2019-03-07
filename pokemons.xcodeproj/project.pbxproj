@@ -18,6 +18,7 @@
 		02F233402204C32C0006F985 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F2333F2204C32C0006F985 /* Utils.swift */; };
 		02F233422204C37B0006F985 /* pokemon.csv in Resources */ = {isa = PBXBuildFile; fileRef = 02F233412204C37B0006F985 /* pokemon.csv */; };
 		FA37217B22303CB300A291F0 /* ViewControllerPokemons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37217A22303CB300A291F0 /* ViewControllerPokemons.swift */; };
+		FA8E16682231322000A502D5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E16672231322000A502D5 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		02F2333F2204C32C0006F985 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		02F233412204C37B0006F985 /* pokemon.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokemon.csv; sourceTree = "<group>"; };
 		FA37217A22303CB300A291F0 /* ViewControllerPokemons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "\b\bViewControllerPokemons.swift"; sourceTree = "<group>"; };
+		FA8E16672231322000A502D5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				023935E522022C0E009D1FF1 /* ViewControllerItem.swift */,
 				FA37217A22303CB300A291F0 /* ViewControllerPokemons.swift */,
+				FA8E16672231322000A502D5 /* TabBarController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				023935E922022C2A009D1FF1 /* Pokemon.swift in Sources */,
+				FA8E16682231322000A502D5 /* TabBarController.swift in Sources */,
 				023935E322022B23009D1FF1 /* TableViewCellCustom.swift in Sources */,
 				02F2333E2204C2580006F985 /* CSV.swift in Sources */,
 				02F233402204C32C0006F985 /* Utils.swift in Sources */,

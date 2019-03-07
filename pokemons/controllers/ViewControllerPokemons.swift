@@ -38,14 +38,20 @@ extension ViewControllerPokemons: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let customCell = tableView.dequeueReusableCell(withIdentifier: "myCell",for:indexPath) as! TableViewCellCustom
         let pokemon = self.pokemon[indexPath.row]
-        Utils.getImage(url: pokemon.png, completion: {
-            (image) -> Void in
-            DispatchQueue.main.async {
-                customCell.uiImage.image = image
-                pokemon.image = image
-                return
-            }
-        })
+        if (pokemon.image != nil) {
+            customCell.uiImage.image = pokemon.image!
+        } else {
+            customCell.uiImage.image = UIImage()
+            Utils.getImage(url: pokemon.png, completion: {
+                (image) -> Void in
+                DispatchQueue.main.async {
+                    print("downloaded")
+                    customCell.uiImage.image = image
+                    pokemon.image = image
+                    return
+                }
+            })
+        }
         customCell.uiImage.contentMode = .scaleAspectFit
         customCell.uiName.text = pokemon.name
         return customCell

@@ -19,18 +19,19 @@ class ViewControllerItem: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLbl.text = pokemon.name
-        if pokemon.image != nil {
-            image.image = pokemon.image!
-        } else {
-            Utils.getImage(url: pokemon.png, completion: {
-                (image) -> Void in
-                DispatchQueue.main.async {
-                    self.image.image = image
-                    self.pokemon.image = image
-                    return
-                }
-            })
-        }
+        image.image = pokemon.image
+//        if pokemon.image != nil {
+//            image.image = pokemon.image!
+//        } else {
+//            Utils.getImage(url: pokemon.png, completion: {
+//                (image) -> Void in
+//                DispatchQueue.main.async {
+//                    self.image.image = image
+//                    self.pokemon.image = image
+//                    return
+//                }
+//            })
+//        }
         descrLbl.text = pokemon.description
     }
 }
