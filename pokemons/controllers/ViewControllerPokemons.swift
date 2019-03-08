@@ -30,6 +30,7 @@ extension ViewControllerPokemons: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let vc = storyboard?.instantiateViewController(withIdentifier: "itemView") as! ViewControllerItem
         vc.pokemon = pokemon[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
@@ -51,9 +52,18 @@ extension ViewControllerPokemons: UITableViewDelegate, UITableViewDataSource {
                 }
             })
         }
+        customCell.selectionStyle = .none
         customCell.uiImage.contentMode = .scaleAspectFit
         customCell.uiName.text = pokemon.name
+        customCell.setTypes(type1: pokemon.type, type2: pokemon.type2)
         return customCell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layer.transform = CATransform3DMakeScale(0.3,0.3,1)
+        UIView.animate(withDuration: 0.3, animations: {
+            cell.layer.transform = CATransform3DMakeScale(1,1,1)
+        })
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -61,6 +71,6 @@ extension ViewControllerPokemons: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 150
     }
 }

@@ -15,12 +15,34 @@ class ViewControllerItem: UIViewController {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var descrLbl: UILabel!
     @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var uiType1: UIButton!
+    @IBOutlet weak var uiType2: UIButton!
+    @IBOutlet weak var number: UILabel!
+    @IBOutlet weak var hp: UILabel!
+    @IBOutlet weak var atk: UILabel!
+    @IBOutlet weak var def: UILabel!
+    @IBOutlet weak var speed: UILabel!
+    @IBOutlet weak var spAtk: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         image.image = .gifImageWithURL(pokemon.gif)
         descrLbl.text = pokemon.description
         navItem.title = pokemon.name
+        number.text = String(pokemon.number)
+        hp.text = String(pokemon.hp)
+        atk.text = String(pokemon.attack)
+        def.text = String(pokemon.defense)
+        speed.text = String(pokemon.speed)
+        spAtk.text = String(pokemon.special)
+        uiType1.setTitle(pokemon.type.uppercased(), for: .normal)
+        uiType1.backgroundColor = Pokemon.colors[pokemon.type]
+        uiType1.layer.cornerRadius = 10
+        uiType1.clipsToBounds = true
+        uiType2.setTitle(pokemon.type2.uppercased(), for: .normal)
+        uiType2.backgroundColor = Pokemon.colors[pokemon.type2]
+        uiType2.layer.cornerRadius = 10
+        uiType2.clipsToBounds = true
     }
 }

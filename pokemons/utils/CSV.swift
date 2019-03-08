@@ -2,6 +2,7 @@
 //  CSV
 //  Modified by Mark Price on 08/14/15
 //  Modified by Daniel Moreno on 30/12/18 - Adapted to SWIFT4
+//  Modified by Alex Bou on 08/03/19
 //
 
 import Foundation
