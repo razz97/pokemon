@@ -82,22 +82,25 @@ extension ViewControllerPokemons: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        return UISwipeActionsConfiguration(actions: [toggleCatch(indexPath: indexPath)])
-    }
-    
-    func toggleCatch(indexPath:IndexPath) -> UIContextualAction{
         let pokemon = isSearching ? filteredPokemon[indexPath.row] : self.pokemon[indexPath.row]
-        let action = UIContextualAction(style: .normal, title: "") { (action, view, completion) in
-            pokemon.caught = !pokemon.caught
-            Utils.toggleCaught(pokemon)
-            self.pokemonTableView.reloadRows(at: [indexPath], with: .none)
-            action.title = "You caught it!"
-            completion(true)
+        let action = UIContextualAction(style: .normal, title: pokemon.caught ? "Free it!" : "Catch",
+            handler: {(action, view, completion) in
+                pokemon.caught = !pokemon.caught
+                Utils.toggleCaught(pokemon)
+                UIView.performWithoutAnimation {
+                    self.pokemonTableView.reloadRows(at: [indexPath], with: .none)
+                }
+                completion(true)
+            }
+        )
+        if pokemon.caught {
+            action.image = UIImage(named: "uncatch")!
+            action.backgroundColor = UIColor(red: 202/255, green: 52/255, blue: 51/255, alpha: 1)
+        } else {
+            action.image = UIImage(named: "catch")!
+            action.backgroundColor = UIColor(red: 80/255, green: 220/255, blue: 100/255, alpha: 1)
         }
-        action.title = pokemon.caught ? "Free it!" : "Catch"
-        action.image = UIImage(named: "tabbar_0_sel")
-        action.backgroundColor =  pokemon.caught ? .red : .green
-        return action
+        return UISwipeActionsConfiguration(actions: [action])
     }
 }
 extension ViewControllerPokemons: UISearchBarDelegate {
@@ -108,7 +111,9 @@ extension ViewControllerPokemons: UISearchBarDelegate {
         })
         isSearching = searchText != ""
         pokemonTableView.reloadData()
-        pokemonTableView.setContentOffset(.zero, animated: true)
+        if filteredPokemon.count > 0  && isSearching {
+            pokemonTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

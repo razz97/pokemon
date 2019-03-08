@@ -12,6 +12,8 @@ class ViewControllerProfile: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var profImage: UIImageView!
+    
     @IBOutlet weak var catches: UILabel!
     
     var caught: [Pokemon] = []
@@ -20,6 +22,8 @@ class ViewControllerProfile: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        profImage.layer.cornerRadius = profImage.frame.size.height/2
+        profImage.clipsToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,8 +33,6 @@ class ViewControllerProfile: UIViewController {
         collectionView.reloadData()
     }
     
-
-
 }
 extension ViewControllerProfile: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -54,7 +56,15 @@ extension ViewControllerProfile: UICollectionViewDelegate, UICollectionViewDataS
                 }
             })
         }
+        cell.layer.borderColor = Utils.getColor(forType: pokemon.type).cgColor
+        cell.pokemonName.text = pokemon.name
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "itemView") as! ViewControllerItem
+        vc.pokemon = caught[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

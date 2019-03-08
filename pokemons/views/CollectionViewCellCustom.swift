@@ -12,4 +12,13 @@ class CollectionViewCellCustom: UICollectionViewCell {
     
     @IBOutlet weak var img: UIImageView!
     
+    @IBOutlet weak var pokemonName: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.layer.borderWidth = 5
+        self.layer.cornerRadius = 20
+        self.clipsToBounds = true
+    }   
+    
 }
