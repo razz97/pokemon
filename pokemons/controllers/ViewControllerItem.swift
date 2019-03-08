@@ -12,26 +12,15 @@ class ViewControllerItem: UIViewController {
     
     var pokemon: Pokemon!
     
-    @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var descrLbl: UILabel!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLbl.text = pokemon.name
-        image.image = pokemon.image
-//        if pokemon.image != nil {
-//            image.image = pokemon.image!
-//        } else {
-//            Utils.getImage(url: pokemon.png, completion: {
-//                (image) -> Void in
-//                DispatchQueue.main.async {
-//                    self.image.image = image
-//                    self.pokemon.image = image
-//                    return
-//                }
-//            })
-//        }
+        
+        image.image = .gifImageWithURL(pokemon.gif)
         descrLbl.text = pokemon.description
+        navItem.title = pokemon.name
     }
 }

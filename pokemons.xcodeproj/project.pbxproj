@@ -17,6 +17,8 @@
 		02F2333E2204C2580006F985 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F2333D2204C2580006F985 /* CSV.swift */; };
 		02F233402204C32C0006F985 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F2333F2204C32C0006F985 /* Utils.swift */; };
 		02F233422204C37B0006F985 /* pokemon.csv in Resources */ = {isa = PBXBuildFile; fileRef = 02F233412204C37B0006F985 /* pokemon.csv */; };
+		FA0ECB5B2231B6070054B37C /* ViewControllerAbout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0ECB5A2231B6070054B37C /* ViewControllerAbout.swift */; };
+		FA0ECB5D2231E7B90054B37C /* GifUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0ECB5C2231E7B90054B37C /* GifUtils.swift */; };
 		FA37217B22303CB300A291F0 /* ViewControllerPokemons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37217A22303CB300A291F0 /* ViewControllerPokemons.swift */; };
 		FA8E16682231322000A502D5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E16672231322000A502D5 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,8 @@
 		02F2333D2204C2580006F985 /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		02F2333F2204C32C0006F985 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		02F233412204C37B0006F985 /* pokemon.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokemon.csv; sourceTree = "<group>"; };
+		FA0ECB5A2231B6070054B37C /* ViewControllerAbout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAbout.swift; sourceTree = "<group>"; };
+		FA0ECB5C2231E7B90054B37C /* GifUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifUtils.swift; sourceTree = "<group>"; };
 		FA37217A22303CB300A291F0 /* ViewControllerPokemons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "\b\bViewControllerPokemons.swift"; sourceTree = "<group>"; };
 		FA8E16672231322000A502D5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +82,7 @@
 				023935D322022851009D1FF1 /* LaunchScreen.storyboard */,
 				023935D622022851009D1FF1 /* Info.plist */,
 				02F2333F2204C32C0006F985 /* Utils.swift */,
+				FA0ECB5C2231E7B90054B37C /* GifUtils.swift */,
 			);
 			path = pokemons;
 			sourceTree = "<group>";
@@ -105,6 +110,7 @@
 				023935E522022C0E009D1FF1 /* ViewControllerItem.swift */,
 				FA37217A22303CB300A291F0 /* ViewControllerPokemons.swift */,
 				FA8E16672231322000A502D5 /* TabBarController.swift */,
+				FA0ECB5A2231B6070054B37C /* ViewControllerAbout.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -195,8 +201,10 @@
 				02F2333E2204C2580006F985 /* CSV.swift in Sources */,
 				02F233402204C32C0006F985 /* Utils.swift in Sources */,
 				FA37217B22303CB300A291F0 /* ViewControllerPokemons.swift in Sources */,
+				FA0ECB5D2231E7B90054B37C /* GifUtils.swift in Sources */,
 				023935E722022C0E009D1FF1 /* ViewControllerItem.swift in Sources */,
 				023935CB2202284F009D1FF1 /* AppDelegate.swift in Sources */,
+				FA0ECB5B2231B6070054B37C /* ViewControllerAbout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

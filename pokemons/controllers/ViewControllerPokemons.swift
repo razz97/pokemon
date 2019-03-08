@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ViewControllerPokemons : UIViewController {
+class ViewControllerPokemons   : UIViewController {
 
     var pokemon: [Pokemon] = []
     
@@ -45,7 +45,6 @@ extension ViewControllerPokemons: UITableViewDelegate, UITableViewDataSource {
             Utils.getImage(url: pokemon.png, completion: {
                 (image) -> Void in
                 DispatchQueue.main.async {
-                    print("downloaded")
                     customCell.uiImage.image = image
                     pokemon.image = image
                     return
