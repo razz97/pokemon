@@ -9,7 +9,12 @@
 import Foundation
 import UIKit
 
-class Pokemon {
+class Pokemon: Codable, Equatable {
+    
+    static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
+        return lhs.number == rhs.number
+    }
+    
     
     let number: Int
     let name: String
@@ -24,8 +29,14 @@ class Pokemon {
     let png: String
     let description: String
     var image: UIImage?
+    var gifImage: UIImage?
+    var caught: Bool
     
-    init(number: Int, name: String, type: String, type2: String, hp: Int, attack: Int, defense: Int, speed: Int, special: Int, gif: String, png: String, description: String) {
+    private enum CodingKeys: String,CodingKey {
+        case number, name, type, type2, hp, attack, defense, speed, special, gif, png, description, caught
+    }
+    
+    init(number: Int, name: String, type: String, type2: String, hp: Int, attack: Int, defense: Int, speed: Int, special: Int, gif: String, png: String, description: String, caught: Bool = false) {
         self.number = number
         self.name = name
         self.type = type
@@ -38,6 +49,7 @@ class Pokemon {
         self.gif = gif
         self.png = png
         self.description = description
+        self.caught = caught
     }
     
     static let colors: [String: UIColor] = [

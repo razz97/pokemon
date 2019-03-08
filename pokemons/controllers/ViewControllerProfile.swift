@@ -20,14 +20,15 @@ class ViewControllerProfile: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        caught = Utils.getPokemons()
-        catches.text = String(caught.count)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        caught = Utils.getCaught()
+        catches.text = String(caught.count)
+        collectionView.reloadData()
     }
+    
 
 
 }

@@ -18,6 +18,8 @@ class TableViewCellCustom: UITableViewCell {
     
     @IBOutlet weak var uiImage: UIImageView!
     
+    @IBOutlet weak var caught: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -37,6 +39,8 @@ class TableViewCellCustom: UITableViewCell {
         uiType2.clipsToBounds = true
 
     }
+    
+    
     
 
     

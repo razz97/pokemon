@@ -27,7 +27,27 @@ class ViewControllerItem: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        image.image = .gifImageWithURL(pokemon.gif)
+        setGif()
+        setInfo()
+        setTypes()
+    }
+    
+    func setGif() {
+        if (pokemon.gifImage != nil) {
+            image.image = pokemon.gifImage
+        } else {
+            UIImage.gifImageWithURL(url:pokemon.gif, completion: {
+                (img) -> Void in
+                DispatchQueue.main.async {
+                    self.pokemon.gifImage = img
+                    self.image.image = img
+                    return
+                }
+            })
+        }
+    }
+    
+    func setInfo() {
         descrLbl.text = pokemon.description
         navItem.title = pokemon.name
         number.text = String(pokemon.number)
@@ -36,6 +56,9 @@ class ViewControllerItem: UIViewController {
         def.text = String(pokemon.defense)
         speed.text = String(pokemon.speed)
         spAtk.text = String(pokemon.special)
+    }
+    
+    func setTypes() {
         uiType1.setTitle(pokemon.type.uppercased(), for: .normal)
         uiType1.backgroundColor = Pokemon.colors[pokemon.type]
         uiType1.layer.cornerRadius = 10

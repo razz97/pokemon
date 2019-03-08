@@ -31,18 +31,19 @@ extension UIImage {
         return UIImage.animatedImageWithSource(source)
     }
     
-    public class func gifImageWithURL(_ gifUrl:String) -> UIImage? {
-        guard let bundleURL:URL = URL(string: gifUrl)
-            else {
-                print("image named \"\(gifUrl)\" doesn't exist")
-                return nil
-        }
-        guard let imageData = try? Data(contentsOf: bundleURL) else {
-            print("image named \"\(gifUrl)\" into NSData")
-            return nil
-        }
-        
-        return gifImageWithData(imageData)
+    public class func gifImageWithURL(url:String,completion: @escaping (_ image: UIImage?) -> ()) {
+        URLSession(configuration: .default).dataTask(
+            with: URL(string: url)!,
+            completionHandler: { (data, response, error) in
+                if error != nil {
+                    print("Error downloading image: \(error!)")
+                } else if  response != nil && data != nil {
+                    completion(gifImageWithData(data!))
+                } else {
+                    print("Unexpected error fetching image")
+                }
+            }
+        ).resume()
     }
     
     public class func gifImageWithName(_ name: String) -> UIImage? {
