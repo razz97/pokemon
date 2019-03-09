@@ -106,6 +106,10 @@ extension ViewControllerPokemons: UISearchBarDelegate {
         filteredPokemon = Dao.instance.pokemons.filter({ (pokemon) -> Bool in
             return pokemon.name.lowercased().contains(searchText.lowercased())
         })
+        filteredPokemon.append(contentsOf: Dao.instance.pokemons.filter({ (pokemon) -> Bool in
+            return pokemon.type.lowercased().contains(searchText.lowercased())
+                || pokemon.type2.lowercased().contains(searchText.lowercased())
+        }))
         isSearching = searchText != ""
         pokemonTableView.reloadData()
         if filteredPokemon.count > 0  && isSearching {
