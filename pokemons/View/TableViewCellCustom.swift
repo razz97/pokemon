@@ -11,22 +11,10 @@ import UIKit
 class TableViewCellCustom: UITableViewCell {
 
     @IBOutlet weak var uiType1: UIButton!
-    
     @IBOutlet weak var uiType2: UIButton!
-    
     @IBOutlet weak var uiName: UILabel!
-    
     @IBOutlet weak var uiImage: UIImageView!
-    
     @IBOutlet weak var caught: UIImageView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
     func setTypes(type1: String, type2: String) {
         uiType1.setTitle(type1.uppercased(), for: .normal)
@@ -39,10 +27,4 @@ class TableViewCellCustom: UITableViewCell {
         uiType2.clipsToBounds = true
 
     }
-    
-    
-    
-
-    
-
 }

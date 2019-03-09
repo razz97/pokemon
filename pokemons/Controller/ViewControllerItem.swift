@@ -10,10 +10,8 @@ import UIKit
 
 class ViewControllerItem: UIViewController {
     
-    var pokemon: Pokemon!
-    
     @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var descrLbl: UILabel!
+    @IBOutlet weak var desciption: UITextView!
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var uiType1: UIButton!
     @IBOutlet weak var uiType2: UIButton!
@@ -24,6 +22,7 @@ class ViewControllerItem: UIViewController {
     @IBOutlet weak var speed: UILabel!
     @IBOutlet weak var spAtk: UILabel!
     
+    var pokemon: Pokemon!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +35,7 @@ class ViewControllerItem: UIViewController {
         if (pokemon.gifImage != nil) {
             image.image = pokemon.gifImage
         } else {
-            UIImage.gifImageWithURL(url:pokemon.gif, completion: {
-                (img) -> Void in
+            Dao.instance.getGif(url:pokemon.gif, completion: { (img) -> Void in
                 DispatchQueue.main.async {
                     self.pokemon.gifImage = img
                     self.image.image = img
@@ -48,7 +46,7 @@ class ViewControllerItem: UIViewController {
     }
     
     func setInfo() {
-        descrLbl.text = pokemon.description
+        desciption.text = pokemon.description
         navItem.title = pokemon.name
         number.text = String(pokemon.number)
         hp.text = String(pokemon.hp)

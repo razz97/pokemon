@@ -12,6 +12,10 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupItems()
+    }
+    
+    func setupItems() {
         let margin = tabBar.frame.height * 0.1
         for (index,item) in self.tabBar.items!.enumerated() {
             item.image = UIImage(named: "tabbar_\(index)")!.withRenderingMode(.alwaysOriginal)

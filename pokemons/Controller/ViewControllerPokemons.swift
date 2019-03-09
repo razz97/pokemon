@@ -10,13 +10,12 @@ import Foundation
 import UIKit
 
 class ViewControllerPokemons: UIViewController {
-
-    var pokemon: [Pokemon] = []
-    var filteredPokemon: [Pokemon] = []
-    var isSearching: Bool = false
     
     @IBOutlet weak var pokemonSearchBar: UISearchBar!
     @IBOutlet weak var pokemonTableView: UITableView!
+    
+    var filteredPokemon: [Pokemon] = []
+    var isSearching: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,32 +24,30 @@ class ViewControllerPokemons: UIViewController {
         pokemonSearchBar.delegate = self
         pokemonSearchBar.placeholder = "Buscar pokemon..."
         pokemonSearchBar.enablesReturnKeyAutomatically = false
-        pokemon = Utils.getPokemons()
     }
     
 }
 extension ViewControllerPokemons: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? filteredPokemon.count : pokemon.count
+        return isSearching ? filteredPokemon.count : Dao.instance.pokemons.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = storyboard?.instantiateViewController(withIdentifier: "itemView") as! ViewControllerItem
-        vc.pokemon = isSearching ? filteredPokemon[indexPath.row] : pokemon[indexPath.row]
+        vc.pokemon = isSearching ? filteredPokemon[indexPath.row] : Dao.instance.pokemons[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let customCell = tableView.dequeueReusableCell(withIdentifier: "myCell",for:indexPath) as! TableViewCellCustom
-        let pokemon = isSearching ? self.filteredPokemon[indexPath.row] : self.pokemon[indexPath.row]
+        let pokemon = isSearching ? filteredPokemon[indexPath.row] : Dao.instance.pokemons[indexPath.row]
         if (pokemon.image != nil) {
             customCell.uiImage.image = pokemon.image!
         } else {
             customCell.uiImage.image = UIImage()
-            Utils.getImage(url: pokemon.png, completion: {
-                (image) -> Void in
+            Dao.instance.getImage(url: pokemon.png, completion: { (image) -> Void in
                 DispatchQueue.main.async {
                     customCell.uiImage.image = image
                     pokemon.image = image
@@ -82,11 +79,11 @@ extension ViewControllerPokemons: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let pokemon = isSearching ? filteredPokemon[indexPath.row] : self.pokemon[indexPath.row]
-        let action = UIContextualAction(style: .normal, title: pokemon.caught ? "Free it!" : "Catch",
+        let pokemon = isSearching ? filteredPokemon[indexPath.row] : Dao.instance.pokemons[indexPath.row]
+        let action = UIContextualAction(style: .normal, title: pokemon.caught ? "Free it!" : "Catch it!",
             handler: {(action, view, completion) in
                 pokemon.caught = !pokemon.caught
-                Utils.toggleCaught(pokemon)
+                Dao.instance.toggleCaught(pokemon)
                 UIView.performWithoutAnimation {
                     self.pokemonTableView.reloadRows(at: [indexPath], with: .none)
                 }
@@ -106,7 +103,7 @@ extension ViewControllerPokemons: UITableViewDelegate, UITableViewDataSource {
 extension ViewControllerPokemons: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredPokemon = pokemon.filter({ (pokemon) -> Bool in
+        filteredPokemon = Dao.instance.pokemons.filter({ (pokemon) -> Bool in
             return pokemon.name.lowercased().contains(searchText.lowercased())
         })
         isSearching = searchText != ""

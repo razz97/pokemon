@@ -8,6 +8,7 @@
 import Foundation
 
 public class CSV {
+    
     public var headers: [String] = []
     public var rows: [Dictionary<String, String>] = []
     public var columns = Dictionary<String, [String]>()
@@ -16,11 +17,9 @@ public class CSV {
     public init(content: String?, delimiter: CharacterSet, encoding: UInt) throws{
         if let csvStringToParse = content{
             self.delimiter = delimiter
-            
             let newline = NSCharacterSet.newlines
             var lines: [String] = []
             csvStringToParse.trimmingCharacters(in: newline).enumerateLines { line, stop in lines.append(line) }
-            
             self.headers = self.parseHeaders(fromLines: lines)
             self.rows = self.parseRows(fromLines: lines)
             self.columns = self.parseColumns(fromLines: lines)
@@ -45,12 +44,8 @@ public class CSV {
     
     func parseRows(fromLines lines: [String]) -> [Dictionary<String, String>] {
         var rows: [Dictionary<String, String>] = []
-        
         for (lineNumber, line) in lines.enumerated() {
-            if lineNumber == 0 {
-                continue
-            }
-            
+            if lineNumber == 0 { continue }
             var row = Dictionary<String, String>()
             let values = line.components(separatedBy: self.delimiter)
             for (index, header) in self.headers.enumerated() {
@@ -62,18 +57,15 @@ public class CSV {
             }
             rows.append(row)
         }
-        
         return rows
     }
     
     func parseColumns(fromLines lines: [String]) -> Dictionary<String, [String]> {
         var columns = Dictionary<String, [String]>()
-        
         for header in self.headers {
             let column = self.rows.map { row in row[header] != nil ? row[header]! : "" }
             columns[header] = column
         }
-        
         return columns
     }
 }
