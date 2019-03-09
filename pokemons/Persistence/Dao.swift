@@ -62,7 +62,6 @@ class Dao {
     }
     
     private func readPokemons() {
-        print("reading pokemons")
         do {
             let path = Bundle.main.path(forResource: "pokemon", ofType: "csv")!
             let csv = try CSV(contentsOfURL: path)
